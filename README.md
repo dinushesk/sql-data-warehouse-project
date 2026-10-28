@@ -50,7 +50,7 @@ A consolidated, cleansed, and well-documented SQL Server data warehouse that pro
 
 ---
 
-## BI: Analytics & Reporting (Data Analytics)
+### BI: Analytics & Reporting (Data Analytics)
 
 Develop SQL-based analytics to deliver details insights into:
 - **customer Behaviour**
