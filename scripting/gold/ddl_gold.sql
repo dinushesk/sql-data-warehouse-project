@@ -26,6 +26,49 @@ Note:
 ===============================================================================
 */
 
+        
+/*
+===============================================================================
+Stored Procedure: Load Gold Layer (Silver -> Gold)
+===============================================================================
+Script Purpose:
+    This stored procedure creates the Gold Layer views.
+
+    It performs the following actions:
+    - Drops existing Gold views if they exist.
+    - Creates Customer Dimension View.
+    - Creates Product Dimension View.
+    - Creates Sales Fact View.
+    - Tracks individual view creation durations.
+    - Tracks total Gold Layer execution duration.
+
+Usage Example:
+    EXEC gold.load_gold;
+===============================================================================
+*/
+
+CREATE OR ALTER PROCEDURE gold.load_gold AS
+BEGIN
+
+    DECLARE
+        @start_time DATETIME,
+        @end_time DATETIME,
+        @batch_start_time DATETIME,
+        @batch_end_time DATETIME;
+
+    BEGIN TRY
+
+        SET @batch_start_time = GETDATE();
+
+        PRINT '================================================';
+        PRINT 'Loading Gold Layer';
+        PRINT '================================================';
+
+
+        -- =============================================
+        -- 1. Customer Dimension
+        -- =============================================
+
         SET @start_time = GETDATE();
 
         PRINT '>> Checking if View Exists: gold.dim_customers';
@@ -39,7 +82,7 @@ Note:
         CREATE VIEW gold.dim_customers AS
 
         SELECT
-            ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key, -- Surrogate key
+            ROW_NUMBER() OVER (ORDER BY cst_id) AS customer_key,
             ci.cst_id AS customer_id,
             ci.cst_key AS customer_number,
             ci.cst_firstname AS first_name,
@@ -187,3 +230,4 @@ Note:
     END CATCH
 
 END;
+
