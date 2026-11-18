@@ -21,10 +21,15 @@ Analytics and Reporting: Developing SQL-based analyses to uncover business insig
 This project showcases practical skills in:
 
 SQL Development
+
 Data Warehousing and Architecture
+
 Data Engineering
+
 ETL Pipeline Development
+
 Data Modelling
+
 Data Analytics and Reporting
 
 ### Objective
